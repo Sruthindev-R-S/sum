@@ -1,0 +1,61 @@
+<html>
+    <head ><script language="javascript">
+        function add()
+        {
+            const number1 = parseInt(document.getElementById("num1").value);
+            const number2 = parseInt(document.getElementById("num2").value);
+
+            fetch('http://localhost:3000/calculate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ number1, number2 })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("result").value = data.result;
+            });
+        }
+    </script>
+        <style>
+            body { margin: 0; }
+            .hello{
+                padding:5px;
+                border-radius:5px;
+                color:rgb(217, 7, 7);
+                background-color:rgb(223, 223, 199);
+                position:relative;
+                top:10px;
+                left:16px;
+                
+            }
+            .num1{
+                padding:6px;
+                position:relative;
+                left:12px;
+                top:10px;
+
+            }
+            .num2{
+                position:relative;
+                left:20px;
+                top:10px;
+                padding:6px;
+            }
+            .result{
+                padding:6px;
+                position:relative;
+                left:25px;
+                top:10px;
+            }
+
+        </style>
+    </head>
+    <body>
+       <div style="height:50px; width:1000px; background-color:green;">
+        <button class="hello" onclick="add()" >sum</button>
+        <input class="num1" id="num1">
+        <input class="num2" id="num2">
+        <input class="result" id="result">
+    </div>
+    </body>
+</html>
